@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krizal, I'm Sorry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Lobster', cursive;
+            position: relative;
+        }
+
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .box {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
+            animation: slideUp 1s ease-out forwards;
+            width: 70%;
+            max-width: 500px;
+            height: auto;
+            min-height: 150px;
+            opacity: 0;
+        }
+
+        h1 {
+            font-size: 5vw;
+            color: rgb(255, 0, 0);
+            position: relative;
+            text-shadow: 0 0 10px rgb(255, 0, 0), 0 0 20px rgb(255, 0, 0), 0 0 30px rgb(255, 0, 0);
+            margin: 0;
+            font-family: 'Lobster', cursive;
+            letter-spacing: 2px;
+        }
+
+        @keyframes slideUp {
+            0% {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .sorry-line {
+            font-size: 1.5em;
+            color: rgb(255, 200, 200);
+            text-shadow: 0 0 8px rgb(255, 200, 200);
+            margin-top: 10px;
+            animation: fadeInOut 6s ease-in-out infinite;
+            font-family: 'Lobster', cursive;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        #audioButton {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: rgba(255, 0, 0, 0.8);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.2em;
+        }
+
+        #audioButton:hover {
+            background-color: rgb(255, 0, 0);
+        }
+    </style>
+</head>
+<body>
+    <video id="background-video" muted loop>
+        <source src="https://i.imgur.com/JcRqfBY.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="box">
+        <h1>Prinshu, I'm Sorry 😞</h1>
+        <div id="sorryLine" class="sorry-line"></div>
+        <button id="audioButton">Unmute Audio</button>
+    </div>
+
+    <script>
+        const sorryMessages = [
+            "I'm truly sorry for what happened.",
+            "I regret my actions, please forgive me.",
+            "I never meant to hurt you.",
+            "You mean so much to me, and I'm really sorry.",
+            "I wish I could undo my mistakes.",
+            "I'm deeply sorry from the bottom of my heart.",
+            "Please give me a chance to make things right.",
+            "I know I hurt you, and I'm really sorry.",
+            "You deserve better, and I promise to be better.",
+            "Forgive me for my mistakes, I care about you."
+        ];
+
+        const apologies = [
+            "Good Morning, I'm Sorry!",
+            "Good Evening, Please Forgive Me!",
+            "Hello, I Regret My Actions!",
+            "Sweet Dreams, I Hope You Forgive Me!",
+            "Hey, I'm Really Sorry for Everything!",
+            "Hi, I Miss You & I'm Sorry!",
+            "Good Night, I Hope We Can Fix This!"
+        ];
+
+        function randomItem(arr) {
+            return arr[Math.floor(Math.random() * arr.length)];
+        }
+
+        function displaySorryLine() {
+            const sorryLineElement = document.getElementById("sorryLine");
+            sorryLineElement.textContent = `${randomItem(apologies)} ${randomItem(sorryMessages)}`;
+        }
+
+        setInterval(displaySorryLine, 5000);
+        displaySorryLine();
+
+        window.onload = function () {
+            const video = document.getElementById('background-video');
+            video.play();
+        };
+
+        const audioButton = document.getElementById('audioButton');
+        audioButton.addEventListener('click', function() {
+            const video = document.getElementById('background-video');
+            if (video.muted) {
+                video.muted = false;
+                audioButton.textContent = "Mute Audio";
+            } else {
+                video.muted = true;
+                audioButton.textContent = "Unmute Audio";
+            }
+        });
+    </script>
+</body>
+</html>
